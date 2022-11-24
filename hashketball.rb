@@ -1,3 +1,4 @@
+require "pry"
 # Write your code below game_hash
 def game_hash
   {
@@ -126,4 +127,120 @@ def game_hash
   }
 end
 
-# Write code here
+# def player_stats(player_name)
+#   all_players.find do |player|
+#     player[:player_name] == player_name
+#   end
+# end
+
+# def num_points_scored(player_name)
+#   player = player_stats(player_name)
+#   player[:points]
+# end
+
+
+def num_points_scored(player_name)
+  game_hash.each do |location, team_data|
+    
+    team_data[:players].each do |player| 
+      if player[:player_name] == player_name
+    return  player[:points]
+  end
+end
+end
+end
+
+def shoe_size(player_name)
+  game_hash.each do |location, team_data|
+    
+    team_data[:players].each do |player| 
+      if player[:player_name] == player_name
+        return  player[:shoe]
+      end
+      end
+    end
+  end
+  
+  def team_colors(team_name)
+    game_hash.each do |location, team_data|
+      if team_data[:team_name] == team_name
+        return team_data[:colors]
+      end
+    end
+  end
+  
+  def team_names 
+    game_hash.map do |location, team_data| 
+      team_data[:team_name]
+    end
+  end
+  
+def find_team(team_name)
+  game_hash.map do |location, team_data|
+    if team_data[:team_name] == team_name
+      return team_data
+    end
+  end
+end
+
+def player_numbers(team_name)
+  find_team(team_name)[:players].map do |player|
+    player[:number]
+  end
+end
+
+def all_players 
+  game_hash[:home][:players] + game_hash[:away][:players]
+end
+
+def player_stats(player_name)
+  all_players.each do |player| 
+    if player[:player_name] == player_name
+      return player 
+    end
+  end
+end
+
+def big_shoe_player
+  all_players.max_by do |player|
+    # https://dev.to/sylviapap/the-ruby-enumerable-operator-and-max-vs-maxby-ac6    
+    player[:shoe]
+  end
+end
+
+def big_shoe_rebounds
+  big_shoe_player[:rebounds]
+end
+
+
+
+
+
+
+
+
+
+#   def player_numbers(team_name)
+#     game_hash.map do |location, team_data|
+# why does map only go over the first team when I add a pry it  
+  # tam_data is only the first team. 
+  #       if team_data[:team_name] == team_name
+  #     team_data[:players].map do |player|
+  #       return player[:number]
+  #       end
+  #     end
+  #   end
+  # end
+# binding.pry
+  0
+
+  
+
+  
+
+
+
+
+
+
+
